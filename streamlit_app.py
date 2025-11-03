@@ -138,6 +138,6 @@ st.sidebar.markdown("### 🧠 What I Learned")
 st.sidebar.markdown("""
 - End-to-end ML pipeline with scikit-learn (preprocessing + model)  
 - Model deployment using Streamlit  
--Gained experience in **feature engineering** and understanding **RMSE** evaluation
+- Gained experience in **feature engineering** and understanding **RMSE** evaluation
 """)
 
