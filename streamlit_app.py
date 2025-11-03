@@ -105,7 +105,7 @@ data = {
     "total_bedrooms": total_bedrooms,
     "population": population,
     "households": households,
-    "median_income": median_income,
+    "median_income": median_income_scaled,
     "ocean_proximity": ocean_proximity
 }
 
