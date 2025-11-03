@@ -29,7 +29,11 @@ model = joblib.load("house_price_model_compressed.pkl")
 import matplotlib.pyplot as plt
 
 importances = model.named_steps["final_model"].feature_importances_
-features = model.named_steps["preprocessing"].get_feature_names_out()
+try:
+    features = model.named_steps["preprocessing"].get_feature_names_out()
+except Exception:
+    features = [f"Feature {i}" for i in range(len(model.named_steps["final_model"].feature_importances_))]
+
 
 fig, ax = plt.subplots()
 ax.barh(features, importances)
