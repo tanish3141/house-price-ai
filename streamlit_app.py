@@ -31,6 +31,13 @@ model = joblib.load("house_price_model_compressed.pkl")
 st.title("California House Price Prediction")
 
 st.image("banner.jpg", use_container_width=True)
+with st.expander("🔍 See how the model works"):
+    st.markdown("""
+    - The model is a **Random Forest Regressor** trained on the California Housing dataset.  
+    - Data preprocessing includes handling missing values, feature scaling, and categorical encoding.  
+    - Model performance (RMSE): **$49,900** (approx.)
+    """)
+
 st.markdown("Adjust the sliders and see how the estimated house price changes!")
 income_dollars = st.slider(
     "Median Income (in dollars)",
