@@ -26,19 +26,6 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
         else:
             return np.c_[X, rooms_per_household, population_per_household]
 model = joblib.load("house_price_model_compressed.pkl")
-import matplotlib.pyplot as plt
-
-importances = model.named_steps["final_model"].feature_importances_
-try:
-    features = model.named_steps["preprocessing"].get_feature_names_out()
-except Exception:
-    features = [f"Feature {i}" for i in range(len(model.named_steps["final_model"].feature_importances_))]
-
-
-fig, ax = plt.subplots()
-ax.barh(features, importances)
-st.pyplot(fig)
-
 st.sidebar.title("📘 About this Project")
 st.sidebar.info("""
 This app predicts **California house prices** using a machine learning model trained on real census data.
