@@ -27,6 +27,15 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
             return np.c_[X, rooms_per_household, population_per_household]
 model = joblib.load("house_price_model_compressed.pkl")
 
+st.sidebar.title("📘 About this Project")
+st.sidebar.info("""
+This app predicts **California house prices** using a machine learning model trained on real census data.
+Built with:
+- scikit-learn
+- pandas  
+- Streamlit  
+""")
+
   
 st.title("California House Price Prediction")
 
@@ -124,5 +133,11 @@ input_df = pd.DataFrame([data])
 if st.button("Predict House Price"):
   prediction = model.predict(input_df)
   st.success(f"🏠 Estimated Median House Value: **${prediction[0]:,.2f}**")
-  
+  st.write(“This estimate represents the expected median house price in a neighborhood with similar characteristics.”)  
+st.sidebar.markdown("### 🧠 What I Learned")
+st.sidebar.markdown("""
+- End-to-end ML pipeline with scikit-learn (preprocessing + model)  
+- Model deployment using Streamlit  
+-Gained experience in **feature engineering** and understanding **RMSE** evaluation
+""")
 
