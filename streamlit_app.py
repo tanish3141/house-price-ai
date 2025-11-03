@@ -26,6 +26,14 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
         else:
             return np.c_[X, rooms_per_household, population_per_household]
 model = joblib.load("house_price_model_compressed.pkl")
+import matplotlib.pyplot as plt
+
+importances = model.named_steps["final_model"].feature_importances_
+features = model.named_steps["preprocessing"].get_feature_names_out()
+
+fig, ax = plt.subplots()
+ax.barh(features, importances)
+st.pyplot(fig)
 
 st.sidebar.title("📘 About this Project")
 st.sidebar.info("""
