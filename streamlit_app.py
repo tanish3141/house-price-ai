@@ -1,10 +1,11 @@
 import streamlit as st
 import pickle
+import numpy as np
 
-with open("house_price_model_compressed.pkl",'rb') as file:
+with open("house_price_model_compressed.pkl","rb") as file:
   model=pickle.load(file)
   
-st.title('California House Price Prediction ')
+st.title("🏡 California House Price Prediction ")
 st.markdown("Adjust the sliders and see how the estimated house price changes!")
 income_dollars = st.slider(
     "Median Income (in dollars)",
