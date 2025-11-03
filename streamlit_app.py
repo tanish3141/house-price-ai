@@ -29,6 +29,7 @@ model = joblib.load("house_price_model_compressed.pkl")
 
   
 st.title("🏡 California House Price Prediction ")
+st.image("banner.jpg", use_container_width=True)
 st.markdown("Adjust the sliders and see how the estimated house price changes!")
 income_dollars = st.slider(
     "Median Income (in dollars)",
