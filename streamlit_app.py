@@ -28,7 +28,18 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
 model = joblib.load("house_price_model_compressed.pkl")
 
   
-st.title("🏡 California House Price Prediction ")
+st.set_page_config(page_title="California House Price Predictor", page_icon="🏡", layout="centered")
+st.markdown("""
+    <style>
+        .main {
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #2C3E50;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 st.image("banner.jpg", use_container_width=True)
 st.markdown("Adjust the sliders and see how the estimated house price changes!")
 income_dollars = st.slider(
