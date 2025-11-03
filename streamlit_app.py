@@ -1,6 +1,15 @@
 import streamlit as st
 import numpy as np
 import joblib
+from sklearn.base import BaseEstimator, TransformerMixin
+#custom class for catrggory pipeline
+class DataFrameSelector(BaseEstimator, TransformerMixin):
+    def __init__(self, attribute_names):
+        self.attribute_names = attribute_names
+    def fit(self, X, y=None):
+        return self
+    def transform(self, X):
+        return X[self.attribute_names].values
 
 model = joblib.load("house_price_model_compressed.pkl")
 
