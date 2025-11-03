@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import joblib
 from sklearn.base import BaseEstimator, TransformerMixin
 #custom class for catrggory pipeline
