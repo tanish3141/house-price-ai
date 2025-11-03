@@ -1,5 +1,85 @@
 import streamlit as st
+import pickle
 
-st.title('House Price Prediction ')
+with open("house_price_model_compressed.pkl",'rb') as file:
+  model=pickle.load(file)
+  
+st.title('California House Price Prediction ')
+st.markdown("Adjust the sliders and see how the estimated house price changes!")
+income_dollars = st.slider(
+    "Median Income (in dollars)",
+    min_value=10000,
+    max_value=150000,
+    value=50000,
+    step=5000
+)
 
-st.info('This app predicts house prices')
+latitude = st.slider(
+    "Latitude", 
+    min_value=32.0, 
+    max_value=42.0, 
+    value=37.0, 
+    step=0.1
+)
+
+longitude = st.slider(
+    "Longitude", 
+    min_value=-125.0, 
+    max_value=-114.0, 
+    value=-120.0, 
+    step=0.1
+)
+
+housing_median_age = st.slider(
+    "Median Age of Houses", 
+    min_value=1, 
+    max_value=50, 
+    value=20
+)
+
+total_rooms = st.slider(
+    "Total Rooms", 
+    min_value=100, 
+    max_value=10000, 
+    value=2000, 
+    step=100
+)
+
+total_bedrooms = st.slider(
+    "Total Bedrooms", 
+    min_value=50, 
+    max_value=2000, 
+    value=400, 
+    step=50
+)
+
+population = st.slider(
+    "Population", 
+    min_value=100, 
+    max_value=5000, 
+    value=1000, 
+    step=100
+)
+
+households = st.slider(
+    "Households", 
+    min_value=50, 
+    max_value=2500, 
+    value=400, 
+    step=50
+)
+
+ocean_proximity = st.selectbox(
+    "Ocean Proximity", 
+    ["<1H OCEAN", "INLAND", "ISLAND", "NEAR BAY", "NEAR OCEAN"]
+)
+median_income_scaled = income_dollars / 10000.0
+input_data = np.array([[
+    longitude, latitude, housing_median_age, total_rooms,
+    total_bedrooms, population, households, median_income_scaled, ocean_proximity
+]])
+if st.button("Predict House Price"):
+  prediction=model.predict(input_data)
+  st.success(f"🏠 Estimated Median House Value: **${prediction[0]:,.2f}**")
+  
+
