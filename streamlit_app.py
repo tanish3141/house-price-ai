@@ -97,12 +97,22 @@ ocean_proximity = st.selectbox(
     ["<1H OCEAN", "INLAND", "ISLAND", "NEAR BAY", "NEAR OCEAN"]
 )
 median_income_scaled = income_dollars / 10000.0
-input_data = np.array([[
-    longitude, latitude, housing_median_age, total_rooms,
-    total_bedrooms, population, households, median_income_scaled, ocean_proximity
-]])
+data = {
+    "longitude": longitude,
+    "latitude": latitude,
+    "housing_median_age": housing_median_age,
+    "total_rooms": total_rooms,
+    "total_bedrooms": total_bedrooms,
+    "population": population,
+    "households": households,
+    "median_income": median_income,
+    "ocean_proximity": ocean_proximity
+}
+
+input_df = pd.DataFrame([data])
+
 if st.button("Predict House Price"):
-  prediction=model.predict(input_data)
+  prediction = model.predict(input_df)
   st.success(f"🏠 Estimated Median House Value: **${prediction[0]:,.2f}**")
   
 
